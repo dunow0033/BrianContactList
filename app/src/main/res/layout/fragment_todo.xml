@@ -26,6 +26,7 @@
         android:text="@string/add_todo" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTodo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
