@@ -13,7 +13,7 @@ import com.express.android.briancontactlist.db.TodoDatabase
 import com.express.android.briancontactlist.model.Todo
 import com.express.android.briancontactlist.repository.TodoRepository
 
-class TodoFragment : Fragment() {
+class TodoFragment : Fragment(), TodoAdapter.HandleItemClick {
 
     private var _binding: FragmentTodoBinding? = null
     private val binding: FragmentTodoBinding get() = _binding!!
@@ -26,7 +26,7 @@ class TodoFragment : Fragment() {
     }
 
     private val todoAdapter: TodoAdapter by lazy {
-        TodoAdapter(viewModel)
+        TodoAdapter(viewModel, this@TodoFragment)
     }
 
     override fun onCreateView(
@@ -57,6 +57,18 @@ class TodoFragment : Fragment() {
                 todoAdapter.differ.submitList(it)
             }
         }
+    }
+
+    override fun itemClick(todo: Todo) {
+        TODO("Not yet implemented")
+    }
+
+    override fun removeItem(todo: Todo) {
+        TODO("Not yet implemented")
+    }
+
+    override fun editItem(todo: Todo) {
+        TODO("Not yet implemented")
     }
 
     override fun onDestroyView() {

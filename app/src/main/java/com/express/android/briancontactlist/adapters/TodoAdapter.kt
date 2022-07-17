@@ -1,6 +1,7 @@
 package com.express.android.briancontactlist.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -9,7 +10,9 @@ import com.express.android.briancontactlist.databinding.ListItemTodoBinding
 import com.express.android.briancontactlist.model.Todo
 import com.express.android.briancontactlist.ui.TodoViewModel
 
-class TodoAdapter(private val viewModel: TodoViewModel) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>(){
+class TodoAdapter(private val viewModel: TodoViewModel, clickListener: HandleItemClick) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>(){
+
+    private lateinit var clickListener: HandleItemClick
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
         return TodoViewHolder(
@@ -24,9 +27,17 @@ class TodoAdapter(private val viewModel: TodoViewModel) : RecyclerView.Adapter<T
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         holder.bind(differ.currentList[position])
 
-        holder.binding.deleteBtn.setOnClickListener {
-            viewModel.deleteTodo(currentContact)
-        }
+//        holder.binding.deleteBtn.setOnClickListener(View.OnClickListener {
+//            fun onClick(view: View) {
+//                viewModel.deleteTodo(currentContact)
+//            }
+//        })
+
+        holder.binding.editBtn.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View) {
+                clickListener.editItem(differ.currentList[position])
+            }
+        })
     }
 
     override fun getItemCount(): Int {
@@ -49,5 +60,11 @@ class TodoAdapter(private val viewModel: TodoViewModel) : RecyclerView.Adapter<T
         fun bind(todo: Todo) {
             binding.tvTodo.text = todo.todoTask
         }
+    }
+
+    interface HandleItemClick {
+        fun itemClick(todo: Todo)
+        fun removeItem(todo: Todo)
+        fun editItem(todo: Todo)
     }
 }

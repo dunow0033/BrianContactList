@@ -80,4 +80,7 @@ dependencies {
 
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:$room_version"
+
+    def material_dialogs_version = "3.3.0"
+    implementation "com.afollestad.material-dialogs:core:$material_dialogs_version"
 }

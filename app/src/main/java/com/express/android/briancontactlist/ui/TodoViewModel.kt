@@ -4,8 +4,10 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.express.android.briancontactlist.model.Todo
 import com.express.android.briancontactlist.repository.TodoRepository
+import com.afollestad.materialdialogs.*
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
+import java.security.AccessController.getContext
 
 class TodoViewModel(
     app: Application,
@@ -43,6 +45,13 @@ class TodoViewModel(
         viewModelScope.launch {
             repo.updateTodo(todo)
         }
+    }
+
+    private fun buildAlertDialog() {
+        MaterialDialog(getApplication())
+            .show {
+                title()
+            }
     }
 }
 
