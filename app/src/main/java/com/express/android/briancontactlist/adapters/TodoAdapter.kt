@@ -12,7 +12,7 @@ import com.express.android.briancontactlist.ui.TodoViewModel
 
 class TodoAdapter(private val viewModel: TodoViewModel, clickListener: HandleItemClick) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>(){
 
-    private lateinit var clickListener: HandleItemClick
+    private var clickListener: HandleItemClick = clickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
         return TodoViewHolder(
@@ -25,17 +25,18 @@ class TodoAdapter(private val viewModel: TodoViewModel, clickListener: HandleIte
     }
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
-        holder.bind(differ.currentList[position])
+        holder.bind(differ.currentList[holder.adapterPosition])
 
 //        holder.binding.deleteBtn.setOnClickListener(View.OnClickListener {
 //            fun onClick(view: View) {
-//                viewModel.deleteTodo(currentContact)
+//                //viewModel.deleteTodo(currentContact)
 //            }
 //        })
 
         holder.binding.editBtn.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
-                clickListener.editItem(differ.currentList[position])
+                //clickListener.editItem(differ.currentList[holder.adapterPosition])
+                clickListener.editItem(holder.adapterPosition)
             }
         })
     }
@@ -65,6 +66,6 @@ class TodoAdapter(private val viewModel: TodoViewModel, clickListener: HandleIte
     interface HandleItemClick {
         fun itemClick(todo: Todo)
         fun removeItem(todo: Todo)
-        fun editItem(todo: Todo)
+        fun editItem(int: Int)
     }
 }

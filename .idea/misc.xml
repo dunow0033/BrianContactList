@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BrianContactList/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BrianContactList/app/src/main/res/layout/add_category_layout.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BrianContactList/app/src/main/res/layout/edit_todo_layout.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BrianContactList/app/src/main/res/layout/fragment_custom_edit.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BrianContactList/app/src/main/res/layout/fragment_todo.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/BrianContactList/app/src/main/res/layout/list_item_todo.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/list_content.xml" value="0.20104166666666667" />
         <entry key="..\:/Users/bedon/AndroidStudioProjects/BrianContactList/app/src/main/res/layout/activity_main.xml" value="0.1390625" />
         <entry key="..\:/Users/bedon/AndroidStudioProjects/BrianContactList/app/src/main/res/layout/fragment_todo.xml" value="0.1390625" />
         <entry key="..\:/Users/bedon/AndroidStudioProjects/BrianContactList/app/src/main/res/layout/list_item_todo.xml" value="0.2" />
