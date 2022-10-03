@@ -94,6 +94,8 @@ class TodoFragment : Fragment(), TodoAdapter.HandleItemClick {
             Activity().finish()
         }
 
+        viewModel.updateTodo(Todo(todoTask = updatedText))
+
         viewModel.todos.value?.get(int)?.todoTask = updatedText
 
         dialogBuilder.setMessage(viewModel.todos.value?.get(int)?.todoTask)

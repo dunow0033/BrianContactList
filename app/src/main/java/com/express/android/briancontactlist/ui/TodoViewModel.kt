@@ -52,12 +52,6 @@ class TodoViewModel(
         }
     }
 
-//    fun getDBentryID(id: Int){
-//        viewModelScope.launch {
-//            repo.
-//        }
-//    }
-
 }
 
 class TodoViewModelFactory(
