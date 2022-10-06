@@ -27,8 +27,8 @@ class TodoFragment : Fragment(), TodoAdapter.HandleItemClick {
     private var _binding: FragmentTodoBinding? = null
     private val binding: FragmentTodoBinding get() = _binding!!
 
-    private var adapter: TodoAdapter? = null
-    private var todo: Todo? = null
+//    private var adapter: TodoAdapter? = null
+//    private var todo: Todo? = null
 
     private val viewModel: TodoViewModel by viewModels {
         TodoViewModelFactory(
@@ -36,8 +36,6 @@ class TodoFragment : Fragment(), TodoAdapter.HandleItemClick {
             TodoRepository(TodoDatabase(requireActivity()))
         )
     }
-
-    //val db: TodoDatabase
 
     private val todoAdapter: TodoAdapter by lazy {
         TodoAdapter(viewModel, this@TodoFragment)
@@ -80,7 +78,7 @@ class TodoFragment : Fragment(), TodoAdapter.HandleItemClick {
 
         //dialogBuilder.setTitle(viewModel.todos.value?.get(int)?.id.toString())
 
-        dialogBuilder.setMessage("Edit Todo #${viewModel.todos.value?.get(int)?.id}")
+        dialogBuilder.setMessage("Edit ${viewModel.todos.value?.get(int)?.todoTask}")
 
         var updatedText = ""
         var updatedTodo = EditText(requireActivity())
@@ -94,7 +92,7 @@ class TodoFragment : Fragment(), TodoAdapter.HandleItemClick {
 
             val todoModel = Todo(viewModel.todos.value?.get(int)?.id, updatedText)
             viewModel.updateTodo(todoModel)
-            dialogInterface.dismiss()
+            Activity().finish()
         }
 
         dialogBuilder.setNegativeButton("Cancel") { dialogInterface, it ->
@@ -129,13 +127,43 @@ class TodoFragment : Fragment(), TodoAdapter.HandleItemClick {
 //        dialogBuilder.show()
     }
 
-    override fun itemClick(todo: Todo) {
-        TODO("Not yet implemented")
+    private fun showDeleteDialog(int: Int) {
+        val dialogBuilder = AlertDialog.Builder(requireActivity())
+
+        //dialogBuilder.setTitle(viewModel.todos.value?.get(int)?.id.toString())
+
+        dialogBuilder.setMessage("Delete ${viewModel.todos.value?.get(int)?.todoTask}?")
+
+//        var updatedText = ""
+//        var updatedTodo = EditText(requireActivity())
+//        updatedTodo.setText(viewModel.todos.value?.get(int)?.todoTask)
+//        updatedTodo.setInputType(InputType.TYPE_CLASS_TEXT)
+//        dialogBuilder.setView(updatedTodo)
+//
+//        dialogBuilder.setCancelable(true)
+        dialogBuilder.setPositiveButton("OK") { dialogInterface, it ->
+//            updatedText = updatedTodo.text.toString()
+//
+//            val todoModel = Todo(viewModel.todos.value?.get(int)?.id, updatedText)
+            viewModel.todos.value?.let { it1 -> viewModel.deleteTodo(it1.get(int)) }
+            Activity().finish()
+        }
+
+        dialogBuilder.setNegativeButton("Cancel") { dialogInterface, it ->
+            dialogInterface.dismiss()
+        }
+
+        dialogBuilder.create()
+        dialogBuilder.show()
     }
 
-//    override fun removeItem(todo: Todo) {
+//    override fun itemClick(todo: Todo) {
 //        TODO("Not yet implemented")
 //    }
+
+    override fun removeItem(int: Int) {
+        showDeleteDialog(int)
+    }
 
     override fun editItem(int: Int) {
         showEditTodoDialog(int)

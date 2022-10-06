@@ -14,11 +14,11 @@ class TodoAdapter(private val viewModel: TodoViewModel, clickListener: HandleIte
 
     private var clickListener: HandleItemClick = clickListener
 
-    private var onClickItem: ((Todo) -> Unit)? = null
-
-    fun setOnClickItem(callback: (Todo) -> Unit) {
-        this.onClickItem = callback
-    }
+//    private var onClickItem: ((Todo) -> Unit)? = null
+//
+//    fun setOnClickItem(callback: (Todo) -> Unit) {
+//        this.onClickItem = callback
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
         return TodoViewHolder(
@@ -35,7 +35,8 @@ class TodoAdapter(private val viewModel: TodoViewModel, clickListener: HandleIte
 
         holder.binding.deleteBtn.setOnClickListener(object: View.OnClickListener {
             override fun onClick(view: View) {
-                viewModel.deleteTodo(differ.currentList[holder.adapterPosition])
+                //viewModel.deleteTodo(differ.currentList[holder.adapterPosition])
+                clickListener.removeItem(holder.adapterPosition)
             }
         })
 
@@ -70,7 +71,7 @@ class TodoAdapter(private val viewModel: TodoViewModel, clickListener: HandleIte
     }
 
     interface HandleItemClick {
-        fun itemClick(todo: Todo)
         fun editItem(int: Int)
+        fun removeItem(int: Int)
     }
 }
