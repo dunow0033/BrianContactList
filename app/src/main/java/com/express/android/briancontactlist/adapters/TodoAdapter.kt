@@ -71,7 +71,6 @@ class TodoAdapter(private val viewModel: TodoViewModel, clickListener: HandleIte
 
     interface HandleItemClick {
         fun itemClick(todo: Todo)
-        fun removeItem(todo: Todo)
         fun editItem(int: Int)
     }
 }

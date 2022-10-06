@@ -28,6 +28,7 @@ class TodoFragment : Fragment(), TodoAdapter.HandleItemClick {
     private val binding: FragmentTodoBinding get() = _binding!!
 
     private var adapter: TodoAdapter? = null
+    private var todo: Todo? = null
 
     private val viewModel: TodoViewModel by viewModels {
         TodoViewModelFactory(
@@ -75,30 +76,34 @@ class TodoFragment : Fragment(), TodoAdapter.HandleItemClick {
 
 
     private fun showEditTodoDialog(int: Int) {
-        //Toast.makeText(context, "editing", Toast.LENGTH_SHORT).show()
         val dialogBuilder = AlertDialog.Builder(requireActivity())
 
-        dialogBuilder.setTitle(viewModel.todos.value?.get(int)?.id.toString())
+        //dialogBuilder.setTitle(viewModel.todos.value?.get(int)?.id.toString())
 
-        //dialogBuilder.setMessage(viewModel.todos.value?.get(int)?.todoTask ?: "")
+        dialogBuilder.setMessage("Edit Todo #${viewModel.todos.value?.get(int)?.id}")
 
         var updatedText = ""
         var updatedTodo = EditText(requireActivity())
+        updatedTodo.setText(viewModel.todos.value?.get(int)?.todoTask)
         updatedTodo.setInputType(InputType.TYPE_CLASS_TEXT)
         dialogBuilder.setView(updatedTodo)
-        //dialogBuilder.setPositiveButton("Ok", DialogInterface.OnClickListener()
 
         dialogBuilder.setCancelable(true)
         dialogBuilder.setPositiveButton("OK") { dialogInterface, it ->
             updatedText = updatedTodo.text.toString()
-            Activity().finish()
+
+            val todoModel = Todo(viewModel.todos.value?.get(int)?.id, updatedText)
+            viewModel.updateTodo(todoModel)
+            dialogInterface.dismiss()
         }
 
-        viewModel.updateTodo(Todo(todoTask = updatedText))
+        dialogBuilder.setNegativeButton("Cancel") { dialogInterface, it ->
+            dialogInterface.dismiss()
+        }
 
-        viewModel.todos.value?.get(int)?.todoTask = updatedText
+        //viewModel.todos.value?.get(int)?.todoTask = updatedText
 
-        dialogBuilder.setMessage(viewModel.todos.value?.get(int)?.todoTask)
+        //dialogBuilder.setMessage(viewModel.todos.value?.get(int)?.todoTask)
         //viewModel.todos.value?.get(int)?.todoTask?.let { viewModel.updateTodo(it) }
         dialogBuilder.create()
         dialogBuilder.show()
@@ -128,9 +133,9 @@ class TodoFragment : Fragment(), TodoAdapter.HandleItemClick {
         TODO("Not yet implemented")
     }
 
-    override fun removeItem(todo: Todo) {
-        TODO("Not yet implemented")
-    }
+//    override fun removeItem(todo: Todo) {
+//        TODO("Not yet implemented")
+//    }
 
     override fun editItem(int: Int) {
         showEditTodoDialog(int)
