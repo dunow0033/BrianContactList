@@ -83,6 +83,7 @@ class TodoFragment : Fragment(), TodoAdapter.HandleItemClick {
         var updatedText = ""
         var updatedTodo = EditText(requireActivity())
         updatedTodo.setText(viewModel.todos.value?.get(int)?.todoTask)
+        updatedTodo.requestFocus()
         updatedTodo.setInputType(InputType.TYPE_CLASS_TEXT)
         dialogBuilder.setView(updatedTodo)
 
