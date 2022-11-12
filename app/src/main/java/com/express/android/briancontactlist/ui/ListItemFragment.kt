@@ -21,13 +21,6 @@ class ListItemFragment : Fragment() {
     private var _binding: ListItemTodoBinding? = null
     private val binding: ListItemTodoBinding get() = _binding!!
 
-//    private val viewModel: TodoViewModel by viewModels {
-//        TodoViewModelFactory(
-//            requireActivity().application,
-//            TodoRepository(TodoDatabase(requireActivity()))
-//        )
-//    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,20 +28,5 @@ class ListItemFragment : Fragment() {
     ): View? {
         _binding = ListItemTodoBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-//        with(binding) {
-//            editBtn.setOnClickListener {
-//                //Toast.makeText(context, "${ tvTodo.text } updated!!", Toast.LENGTH_LONG).show()
-//                //todoBinding.etTodo.editText?.setText("updated!!")
-//                Log.d("updated", "Edit clicked!!")
-//            }
-//            deleteBtn.setOnClickListener {
-//                viewModel.deleteTodo(todo = to)
-//            }
-        //       }
     }
 }

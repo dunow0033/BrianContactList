@@ -14,10 +14,6 @@ class TodoRepository(private val db: TodoDatabase) {
         return db.getTodoDao().getTodos()
     }
 
-//    fun getTodoID(): Int {
-//        return db.getTodoDao().getTodos()
-//    }
-
     suspend fun deleteTodo(todo: Todo) {
         db.getTodoDao().deleteTodo(todo)
     }

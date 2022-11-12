@@ -27,9 +27,6 @@ class TodoFragment : Fragment(), TodoAdapter.HandleItemClick {
     private var _binding: FragmentTodoBinding? = null
     private val binding: FragmentTodoBinding get() = _binding!!
 
-//    private var adapter: TodoAdapter? = null
-//    private var todo: Todo? = null
-
     private val viewModel: TodoViewModel by viewModels {
         TodoViewModelFactory(
             requireActivity().application,
@@ -157,10 +154,6 @@ class TodoFragment : Fragment(), TodoAdapter.HandleItemClick {
         dialogBuilder.create()
         dialogBuilder.show()
     }
-
-//    override fun itemClick(todo: Todo) {
-//        TODO("Not yet implemented")
-//    }
 
     override fun removeItem(int: Int) {
         showDeleteDialog(int)

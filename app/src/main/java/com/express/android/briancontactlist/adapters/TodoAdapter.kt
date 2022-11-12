@@ -14,12 +14,6 @@ class TodoAdapter(private val viewModel: TodoViewModel, clickListener: HandleIte
 
     private var clickListener: HandleItemClick = clickListener
 
-//    private var onClickItem: ((Todo) -> Unit)? = null
-//
-//    fun setOnClickItem(callback: (Todo) -> Unit) {
-//        this.onClickItem = callback
-//    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
         return TodoViewHolder(
             ListItemTodoBinding.inflate(
